@@ -1,0 +1,867 @@
+/* ============================================================
+   Home.css — Reference-Matched Layout & Visual Style
+   ============================================================ */
+
+.ref-home {
+  width: 100%;
+  color: var(--text-primary);
+  padding: 18px 24px 32px;
+  box-sizing: border-box;
+}
+
+.ref-home__container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+/* ── Loading, Error & Empty States ── */
+.ref-home__loading,
+.ref-home__error,
+.ref-home__empty {
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 3rem 1.5rem;
+  text-align: center;
+  color: var(--text-secondary);
+}
+
+.ref-home__error h2,
+.ref-home__empty h2 {
+  font-size: 1.5rem;
+  color: var(--text-primary);
+}
+
+.ref-home__retry-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--accent);
+  color: #ffffff;
+  border: none;
+  padding: 0.65rem 1.5rem;
+  border-radius: var(--radius-pill);
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(245, 34, 45, 0.4);
+}
+
+/* ── 1. Search and Utility Row ── */
+.ref-utility-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding: 4px 0 6px;
+}
+
+.ref-utility-row__date {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+}
+
+.ref-utility-row__icon-muted {
+  color: var(--accent);
+}
+
+.ref-utility-row__filter-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  padding: 6px 14px;
+  position: relative;
+}
+
+.ref-utility-row__select {
+  appearance: none;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding-right: 18px;
+}
+
+.ref-utility-row__select option {
+  background: var(--bg-elevated);
+  color: var(--text-primary);
+}
+
+.ref-utility-row__chevron {
+  position: absolute;
+  right: 12px;
+  color: var(--text-muted);
+  pointer-events: none;
+}
+
+.ref-utility-row__search-form {
+  display: flex;
+  align-items: center;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  padding: 5px 14px;
+  flex: 1;
+  max-width: 380px;
+  min-width: 200px;
+  position: relative;
+  transition: all var(--transition-fast);
+}
+
+.ref-utility-row__search-form:focus-within {
+  border-color: rgba(245, 34, 45, 0.4);
+  box-shadow: 0 0 12px rgba(245, 34, 45, 0.2);
+}
+
+.ref-utility-row__search-icon {
+  color: var(--text-muted);
+  margin-right: 0.5rem;
+  flex-shrink: 0;
+}
+
+.ref-utility-row__search-input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text-primary);
+  font-size: 0.85rem;
+  padding: 2px 0;
+}
+
+.ref-utility-row__search-input::placeholder {
+  color: var(--text-muted);
+}
+
+.ref-utility-row__search-clear {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  cursor: pointer;
+  padding: 0 4px;
+  display: flex;
+  align-items: center;
+}
+
+/* ── 2. Featured Movie Artwork Panel ── */
+.ref-featured-artwork {
+  position: relative;
+  width: 100%;
+  height: 410px;
+  border-radius: 20px;
+  overflow: hidden;
+  background-color: var(--bg-elevated);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.7);
+  border: 1px solid var(--border);
+}
+
+.ref-featured-artwork__image {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center 25%;
+  filter: brightness(0.7) contrast(1.1);
+  transition: transform 10s ease;
+}
+
+.ref-featured-artwork:hover .ref-featured-artwork__image {
+  transform: scale(1.02);
+}
+
+.ref-featured-artwork__overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 85% 20%, rgba(245, 34, 45, 0.12) 0%, transparent 60%),
+    linear-gradient(90deg, rgba(16, 16, 16, 0.9) 0%, rgba(16, 16, 16, 0.4) 45%, rgba(16, 16, 16, 0.1) 100%),
+    linear-gradient(0deg, rgba(16, 16, 16, 0.85) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+/* Circular Favorite Control */
+.ref-featured-artwork__fav-btn {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  z-index: 5;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(20, 20, 20, 0.75);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.ref-featured-artwork__fav-btn:hover {
+  background: rgba(30, 30, 30, 0.9);
+  transform: scale(1.06);
+}
+
+.ref-featured-artwork__fav-btn--active {
+  border-color: rgba(245, 34, 45, 0.4);
+}
+
+/* Vertical Thumbnail Selector (Right-side inside artwork panel) */
+.ref-featured-artwork__thumbs {
+  position: absolute;
+  right: 18px;
+  top: 18px;
+  bottom: 18px;
+  z-index: 5;
+  width: 250px;
+  background: rgba(14, 14, 14, 0.88);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  overflow-y: auto;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+}
+
+.ref-featured-artwork__thumbs-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  padding: 0 4px 4px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.ref-featured-artwork__thumb {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 8px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid transparent;
+  border-left: 3px solid transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: left;
+  transition: all var(--transition-fast);
+  width: 100%;
+}
+
+.ref-featured-artwork__thumb img {
+  width: 40px;
+  height: 56px;
+  min-width: 40px;
+  object-fit: cover;
+  border-radius: 5px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+}
+
+.ref-featured-artwork__thumb-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  flex: 1;
+}
+
+.ref-featured-artwork__thumb-info strong {
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #ffffff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.25;
+}
+
+.ref-featured-artwork__thumb-info span {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+.ref-featured-artwork__thumb:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.ref-featured-artwork__thumb--active {
+  background: rgba(245, 34, 45, 0.16);
+  border-color: rgba(245, 34, 45, 0.3);
+  border-left: 3px solid var(--accent);
+}
+
+.ref-featured-artwork__thumb--active strong {
+  color: #ffffff;
+}
+
+.ref-featured-artwork__thumb--active span {
+  color: #fca5a5;
+}
+
+/* ── 3. Movie Information & Booking Cards Grid ── */
+.ref-movie-cards-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 20px;
+  align-items: stretch;
+}
+
+/* Left Information Card */
+.ref-info-card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 22px 24px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+
+.ref-info-card__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 12px;
+}
+
+.ref-info-card__title-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ref-info-card__badge {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  text-transform: uppercase;
+}
+
+.ref-info-card__title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.4rem, 2.5vw, 1.85rem);
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1.15;
+  margin: 0;
+}
+
+.ref-info-card__rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(245, 197, 24, 0.12);
+  border: 1px solid rgba(245, 197, 24, 0.25);
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  flex-shrink: 0;
+}
+
+.ref-info-card__rating-val {
+  font-weight: 800;
+  color: #f5c518;
+  font-size: 0.85rem;
+}
+
+.ref-info-card__rating-max {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+.ref-info-card__rating-count {
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+}
+
+/* Metadata Strip */
+.ref-info-card__meta-strip {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 0.825rem;
+  color: var(--text-secondary);
+  margin-bottom: 14px;
+}
+
+.ref-info-card__meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.ref-info-card__cert-tag {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  padding: 1px 7px;
+  border-radius: 4px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+/* Genre Chips */
+.ref-info-card__genres {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.ref-info-card__genre-chip {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+  padding: 3px 10px;
+  border-radius: var(--radius-pill);
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: #cbd5e1;
+}
+
+/* Short description with Read More */
+.ref-info-card__desc-wrap {
+  margin-top: auto;
+}
+
+.ref-info-card__desc {
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-bottom: 4px;
+}
+
+.ref-info-card__desc--expanded {
+  display: block;
+  -webkit-line-clamp: unset;
+}
+
+.ref-info-card__read-more-btn {
+  background: none;
+  border: none;
+  color: var(--accent);
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 2px 0;
+  transition: all var(--transition-fast);
+}
+
+.ref-info-card__read-more-btn:hover {
+  color: var(--accent-hover);
+  text-decoration: underline;
+}
+
+/* Right Booking Card */
+.ref-booking-card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 22px 24px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+
+.ref-booking-card__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 14px;
+}
+
+.ref-booking-card__eyebrow {
+  display: block;
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  margin-bottom: 3px;
+}
+
+.ref-booking-card__title {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+  line-height: 1.25;
+}
+
+.ref-booking-card__rating-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #f5c518;
+  background: rgba(245, 197, 24, 0.1);
+  padding: 2px 7px;
+  border-radius: var(--radius-pill);
+}
+
+/* Compact Summary */
+.ref-booking-card__summary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  background: rgba(10, 10, 10, 0.5);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 10px 14px;
+  margin-bottom: 14px;
+}
+
+.ref-booking-card__summary-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ref-booking-card__label {
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+.ref-booking-card__val {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Promotional message */
+.ref-booking-card__promo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(245, 34, 45, 0.08);
+  border: 1px solid rgba(245, 34, 45, 0.2);
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 0.78rem;
+  line-height: 1.45;
+  color: #fca5a5;
+  margin-bottom: 18px;
+}
+
+.ref-booking-card__promo-icon {
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+/* Booking Actions */
+.ref-booking-card__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: auto;
+}
+
+.ref-booking-card__btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 20px;
+  border-radius: var(--radius-pill);
+  background: var(--accent);
+  color: #ffffff;
+  font-size: 0.925rem;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 4px 18px rgba(245, 34, 45, 0.45);
+  transition: all var(--transition-fast);
+}
+
+.ref-booking-card__btn-primary:hover {
+  background: var(--accent-hover);
+  box-shadow: 0 6px 24px rgba(245, 34, 45, 0.6);
+  transform: translateY(-1px);
+}
+
+.ref-booking-card__btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 18px;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+.ref-booking-card__btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.09);
+  color: #ffffff;
+  border-color: var(--border-light);
+}
+
+/* ── 4. Upcoming Movies Section ── */
+.ref-upcoming-section {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 22px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+
+.ref-upcoming-section__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ref-upcoming-section__title-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ref-upcoming-section__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent);
+}
+
+.ref-upcoming-section__title-group h2 {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.ref-upcoming-section__see-all {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.825rem;
+  font-weight: 700;
+  color: var(--accent);
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+.ref-upcoming-section__see-all:hover {
+  color: var(--accent-hover);
+  transform: translateX(2px);
+}
+
+.ref-upcoming-section__rail {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding-bottom: 6px;
+  scrollbar-width: thin;
+}
+
+.ref-upcoming-card {
+  flex: 0 0 170px;
+  width: 170px;
+  background: #151515;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: all var(--transition-fast);
+}
+
+.ref-upcoming-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(245, 34, 45, 0.35);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.8);
+}
+
+.ref-upcoming-card__media {
+  position: relative;
+  aspect-ratio: 2 / 3;
+  width: 100%;
+  overflow: hidden;
+  display: block;
+}
+
+.ref-upcoming-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.ref-upcoming-card:hover .ref-upcoming-card__media img {
+  transform: scale(1.05);
+}
+
+.ref-upcoming-card__badge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  font-size: 0.65rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  background: rgba(6, 182, 212, 0.9);
+  color: #ffffff;
+  padding: 2px 7px;
+  border-radius: 4px;
+}
+
+.ref-upcoming-card__rating {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  background: rgba(10, 10, 10, 0.85);
+  color: #f5c518;
+  padding: 2px 7px;
+  border-radius: var(--radius-pill);
+}
+
+.ref-upcoming-card__body {
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.ref-upcoming-card__title {
+  font-family: var(--font-heading);
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ref-upcoming-card__title a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.ref-upcoming-card__meta {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ref-upcoming-card__btn {
+  margin-top: 6px;
+  padding: 5px 0;
+  text-align: center;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+.ref-upcoming-card__btn:hover {
+  background: var(--accent);
+  color: #ffffff;
+  border-color: var(--accent);
+}
+
+/* ── Responsiveness (Tablet & Mobile) ── */
+@media (max-width: 960px) {
+  .ref-featured-artwork {
+    height: 340px;
+  }
+
+  .ref-featured-artwork__thumbs {
+    display: none;
+  }
+
+  .ref-movie-cards-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .ref-home {
+    padding: 12px 14px 24px;
+  }
+
+  .ref-featured-artwork {
+    height: 260px;
+  }
+
+  .ref-utility-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .ref-utility-row__search-form {
+    max-width: 100%;
+  }
+
+  .ref-info-card,
+  .ref-booking-card,
+  .ref-upcoming-section {
+    padding: 16px 16px;
+  }
+
+  .ref-booking-card__summary {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+}

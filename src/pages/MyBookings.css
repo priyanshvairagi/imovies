@@ -1,0 +1,322 @@
+/* ============================================================
+   MyBookings.css — Premium Cinema Boarding Pass Tickets
+   ============================================================ */
+
+.my-bookings {
+  min-height: 100vh;
+  padding-top: 72px;
+  background-color: var(--bg);
+}
+
+/* ── Header ── */
+.my-bookings__header {
+  background: linear-gradient(180deg, rgba(229, 9, 20, 0.08) 0%, rgba(6, 7, 9, 0.95) 100%);
+  border-bottom: 1px solid var(--border);
+  padding: 3rem 1.5rem;
+}
+
+.my-bookings__header-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.my-bookings__header h1 {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 3.5vw, 2.5rem);
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 0.35rem;
+  letter-spacing: -0.025em;
+}
+
+.my-bookings__header p {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+}
+
+.my-bookings__header p strong {
+  color: var(--text-primary);
+}
+
+/* ── Action Buttons ── */
+.my-bookings__btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.6rem;
+  background: var(--accent-gradient);
+  color: #ffffff;
+  border-radius: var(--radius-pill);
+  font-size: 0.925rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all var(--transition-fast);
+  box-shadow: 0 4px 14px rgba(229, 9, 20, 0.4);
+}
+
+.my-bookings__btn-primary:hover {
+  background: var(--accent-gradient-hover);
+  box-shadow: 0 6px 20px rgba(229, 9, 20, 0.55);
+  transform: translateY(-1px);
+}
+
+.my-bookings__btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.6rem;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-primary);
+  border-radius: var(--radius-pill);
+  font-size: 0.925rem;
+  font-weight: 600;
+  text-decoration: none;
+  border: 1px solid var(--border-light);
+  transition: all var(--transition-fast);
+}
+
+.my-bookings__btn-ghost:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* ── Body ── */
+.my-bookings__body {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+
+.my-bookings__section {
+  margin-bottom: 3.5rem;
+}
+
+.my-bookings__section-title {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.my-bookings__list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* ── Cinema Boarding-Pass Ticket Card ── */
+.booking-card {
+  display: flex;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  transition: all var(--transition-fast);
+  position: relative;
+  box-shadow: var(--shadow-sm);
+}
+
+.booking-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(229, 9, 20, 0.35);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.6), 0 0 20px rgba(229, 9, 20, 0.1);
+}
+
+.booking-card--past {
+  opacity: 0.65;
+}
+
+.booking-card--past:hover {
+  opacity: 0.85;
+}
+
+.booking-card__status-bar {
+  width: 5px;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+
+.booking-card--past .booking-card__status-bar {
+  background: var(--text-muted);
+}
+
+.booking-card__inner {
+  display: flex;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.booking-card__poster {
+  width: 80px;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+  flex-shrink: 0;
+  box-shadow: var(--shadow-sm);
+}
+
+.booking-card__info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.booking-card__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.booking-card__title {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.booking-card__badge {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.booking-card__badge--upcoming {
+  background: var(--emerald-muted);
+  color: var(--emerald);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.booking-card__badge--past {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+}
+
+.booking-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem 1.5rem;
+}
+
+.booking-card__meta span {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+
+.booking-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: auto;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+
+.booking-card__ref {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-family: monospace;
+  background: rgba(255, 255, 255, 0.04);
+  padding: 2px 8px;
+  border-radius: var(--radius-xs);
+  letter-spacing: 0.05em;
+}
+
+.booking-card__price {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+/* Cancel Button */
+.booking-cancel-btn {
+  background: none;
+  border: 1px solid rgba(255, 82, 82, 0.3);
+  color: #ff5252;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.booking-cancel-btn:hover:not(:disabled) {
+  background: rgba(255, 82, 82, 0.15);
+  border-color: #ff5252;
+}
+
+/* Empty State */
+.my-bookings__empty-auth,
+.my-bookings__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 6rem 2rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin: 3rem auto;
+}
+
+.my-bookings__empty-auth svg,
+.my-bookings__empty svg {
+  color: var(--accent);
+  margin-bottom: 1.25rem;
+  filter: drop-shadow(0 0 16px var(--accent-glow));
+}
+
+.my-bookings__empty-auth h2,
+.my-bookings__empty h2 {
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 0.65rem;
+}
+
+.my-bookings__empty-auth p,
+.my-bookings__empty p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  margin-bottom: 1.75rem;
+}
+
+.my-bookings__empty-actions {
+  display: flex;
+  gap: 1rem;
+}
